@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adm:package name="coop.plausible.opendj.plugin.kpa"
+  xmlns:adm="http://opendj.forgerock.org/admin"
+  xmlns:ldap="http://opendj.forgerock.org/admin-ldap">
+  <adm:synopsis>Kerberos Pass-Through Authentication Policy plugin.</adm:synopsis>
+</adm:package>
