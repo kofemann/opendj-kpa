@@ -13,7 +13,8 @@ package de.desy.opendj.kpa;
 import de.desy.opendj.kpa.server.KerberosPassThroughAuthenticationPolicyCfg;
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyState;
-import org.opends.server.types.DN;
+import org.forgerock.opendj.ldap.DN;
+
 import org.opends.server.types.DirectoryException;
 import org.opends.server.types.Entry;
 

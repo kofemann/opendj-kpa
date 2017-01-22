@@ -18,7 +18,7 @@
 
     <adm:profile name="ldap">
         <ldap:object-class>
-            <ldap:name>pl-ds-cfg-kerberos-pass-through-authentication-policy</ldap:name>
+            <ldap:name>ds-cfg-kerberos-pass-through-authentication-policy</ldap:name>
             <ldap:superior>ds-cfg-authentication-policy</ldap:superior>
         </ldap:object-class>
     </adm:profile>
@@ -81,7 +81,7 @@
 	</adm:syntax>
 	<adm:profile name="ldap">
 	    <ldap:attribute>
-		<ldap:name>krb5realm</ldap:name>
+		<ldap:name>ds-cfg-realm</ldap:name>
 	    </ldap:attribute>
 	</adm:profile>
     </adm:property>

@@ -36,6 +36,8 @@ import com.sun.security.auth.module.Krb5LoginModule;
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyState;
 import org.opends.server.types.*;
+import org.forgerock.opendj.ldap.schema.AttributeType;
+
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.*;
