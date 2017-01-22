@@ -4,6 +4,18 @@ are managed by an external Kerberos realm.
 Requirements
 ------------
   1. Java sdk 1.7 or above
+  2. maven 3.0
+  3. Sources of OpenDJ
+
+Prepare Build environment
+-------------------------
+Unpack OpenDJ source and run install
+```
+$ mkdir tmp
+$ cd tmp
+$ unzip <path/to/OpenDJ-3.5.x-src.zip>
+$ mvn clean install
+```
 
 Build and Install
 ----------------
@@ -11,8 +23,10 @@ Build and Install
 
     ```$ mvn clean package```
 
-  2. add opendj-kpa-xxx.jar to your OpenDJ installation
-    ```$ cp target/opendj-kpa-xxx.jar <openDJ dir>/lib/extensions```
+  2. add opendj-kpa to your OpenDJ installation
+    ```$ cd <opendj-install directory>
+       $ unzip opendj-kpa-xxx.zip
+    ```
 
   3. restart the server
 
