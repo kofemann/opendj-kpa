@@ -59,4 +59,4 @@ More Info
 ---------
 [Configuring Pass Through Authentication][1]
 
-  [1]: http://opendj.forgerock.org/opendj-server/doc/admin-guide/index/chap-pta.html
+  [1]: https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/chap-pwd-policy
