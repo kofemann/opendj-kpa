@@ -32,6 +32,7 @@ package de.desy.opendj.kpa;
 import com.sun.security.auth.module.Krb5LoginModule;
 
 import org.forgerock.i18n.LocalizableMessage;
+import org.forgerock.i18n.slf4j.LocalizedLogger;
 import org.forgerock.opendj.ldap.ByteString;
 import org.forgerock.opendj.ldap.ResultCode;
 import org.forgerock.opendj.ldap.schema.AttributeType;
@@ -48,9 +49,6 @@ import java.util.*;
 
 import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Kerberos authentication policy state.
  */
@@ -58,7 +56,7 @@ class KerberosPolicyState extends AuthenticationPolicyState {
     /** The parent kerberos policy. */
     private final KerberosPolicy policy;
 
-    private static final Logger logger = LoggerFactory.getLogger(KerberosPolicyState.class);
+    private static final LocalizedLogger logger = LocalizedLogger.getLoggerForThisClass();
 
     /**
      * Create a new policy state instance.
@@ -83,8 +81,8 @@ class KerberosPolicyState extends AuthenticationPolicyState {
          * is set, as it will override the principal we provide below.
          */
         if (System.getProperty("sun.security.krb5.principal") != null) {
-            logger.error("The 'sun.security.krb5.principal' system property is set. This will override all " +
-                "the authentication principal when performing Kerberos pass-through authentication.");
+            logger.error(LocalizableMessage.raw("The 'sun.security.krb5.principal' system property is set. This will override all " +
+                "the authentication principal when performing Kerberos pass-through authentication."));
             return false;
         }
 
@@ -146,11 +144,11 @@ class KerberosPolicyState extends AuthenticationPolicyState {
             loginModule.login();
             loginModule.logout();
         } catch (FailedLoginException e) {
-            logger.debug("login failed: {}", e.getMessage());
+            logger.traceException(e, "login failed");
             return false;
         } catch (LoginException e) {
-            logger.error("Failed to issue Kerberos login request: {}", e.getMessage());
-            logger.debug("Failed to issue login request:", e);
+            logger.error(LocalizableMessage.raw("Failed to issue Kerberos login request: %s", e.getMessage()));
+            logger.traceException(e, "Failed to issue login request");
             return false;
         }
 
