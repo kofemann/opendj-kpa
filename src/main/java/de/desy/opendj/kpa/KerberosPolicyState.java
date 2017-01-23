@@ -107,14 +107,14 @@ class KerberosPolicyState extends AuthenticationPolicyState {
 
 	String krb5Principal = userPrincipal + "@" + this.policy.getConfig().getKrb5Realm();
         /* Kerberos module options */
-        final Map<String,Object> options = new HashMap<String, Object>();
+        final Map<String,Object> options = new HashMap<>();
         options.put("refreshKrb5Config", "true"); // Fetch most up-to-date configuration
         options.put("useTicketCache", "true"); // Do not reference the hosts' ticket cache
         options.put("doNotPrompt", "true"); // Fetch principal et al from the shared state
         options.put("useFirstPass", "true"); // Use auth info from the shared state, do not retry
 
         /* Kerberos module state */
-        final Map<String,Object> state = new HashMap<String, Object>();
+        final Map<String,Object> state = new HashMap<>();
         state.put("javax.security.auth.login.name", krb5Principal);
         state.put("javax.security.auth.login.password", byteString.toString().toCharArray());
 
