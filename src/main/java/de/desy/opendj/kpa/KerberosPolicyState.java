@@ -47,6 +47,7 @@ import javax.security.auth.login.*;
 import java.io.IOException;
 import java.util.*;
 
+import static de.desy.opendj.kpa.OpendjKpaMessages.*;
 import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
 
 /**
@@ -135,10 +136,10 @@ class KerberosPolicyState extends AuthenticationPolicyState {
             loginModule.login();
             loginModule.logout();
         } catch (FailedLoginException e) {
-            logger.traceException(e, "login failed");
+            logger.debug(KPA_LOGIN_FAILED.get(userPrincipal, e.getMessage()));
             return false;
         } catch (LoginException e) {
-            logger.error(LocalizableMessage.raw("Failed to issue Kerberos login request: %s", e.getMessage()));
+            logger.error(KPA_PLUGIN_FAILED.get(e.getMessage()));
             logger.traceException(e, "Failed to issue login request");
             return false;
         }

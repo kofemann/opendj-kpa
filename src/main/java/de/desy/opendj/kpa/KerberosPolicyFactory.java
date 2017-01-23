@@ -12,6 +12,8 @@ import org.opends.server.types.InitializationException;
 
 import java.util.List;
 
+import static de.desy.opendj.kpa.OpendjKpaMessages.KPA_PLUGIN_INIT_FAILED;
+
 /**
  * Kerberos pass-through authentication policy factory.
  */
@@ -39,9 +41,7 @@ public class KerberosPolicyFactory implements AuthenticationPolicyFactory<Kerber
          * below.
          */
         if (System.getProperty("sun.security.krb5.principal") != null) {
-            throw new ConfigException(LocalizableMessage.raw(
-                    "The 'sun.security.krb5.principal' system property is set. "
-                    + "Can't initialize Kerberos pass-through authentication."));
+            throw new ConfigException(KPA_PLUGIN_INIT_FAILED.get());
         }
         return new KerberosPolicy(config);
     }

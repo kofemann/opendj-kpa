@@ -21,70 +21,96 @@
                     <include>**</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
         </resources>
 
         <plugins>
 
             <plugin>
-              <groupId>org.forgerock.opendj</groupId>
-              <artifactId>opendj-maven-plugin</artifactId>
-              <version>${version.opendj}</version>
-              <executions>
-                <execution>
-                  <id>generate-config</id>
-                  <phase>generate-sources</phase>
-                  <goals>
-                    <goal>generate-config</goal>
-                  </goals>
-                  <configuration>
-                    <packageName>de.desy.opendj.kpa</packageName>
-                    <isExtension>true</isExtension>
-                  </configuration>
-                </execution>
-              </executions>
+                <groupId>org.forgerock.commons</groupId>
+                <artifactId>i18n-maven-plugin</artifactId>
+                <version>1.4.2</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-messages</goal>
+                        </goals>
+                        <configuration>
+                            <resourceDirectory>${basedir}/src/main/resources</resourceDirectory>
+                            <messageFiles>
+                                <messageFile>de/desy/opendj/kpa/opendj-kpa.properties</messageFile>
+                            </messageFiles>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>3.0.1</version>
-          </plugin>
+            <plugin>
+                <groupId>org.forgerock.opendj</groupId>
+                <artifactId>opendj-maven-plugin</artifactId>
+                <version>${version.opendj}</version>
+                <executions>
+                    <execution>
+                        <id>generate-config</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-config</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>de.desy.opendj.kpa</packageName>
+                            <isExtension>true</isExtension>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>3.0.0</version>
-            <executions>
-              <execution>
-                <id>make-assembly</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/main/assembly/descriptor.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
                 <configuration>
-                  <appendAssemblyId>false</appendAssemblyId>
-                  <descriptors>
-                    <descriptor>src/main/assembly/descriptor.xml</descriptor>
-                  </descriptors>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Revision-Number>${maven.build.timestamp}</Revision-Number>
+                            <Extension-Name>${project.artifactId}</Extension-Name>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jar-plugin</artifactId>
-              <version>3.0.2</version>
-              <configuration>
-                  <archive>
-                      <manifestEntries>
-                          <Implementation-Version>${project.version}</Implementation-Version>
-                          <Revision-Number>${maven.build.timestamp}</Revision-Number>
-                          <Extension-Name>${project.artifactId}</Extension-Name>
-                      </manifestEntries>
-                  </archive>
-              </configuration>
-          </plugin>
+            </plugin>
 
         </plugins>
     </build>
