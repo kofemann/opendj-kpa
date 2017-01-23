@@ -76,15 +76,6 @@ class KerberosPolicyState extends AuthenticationPolicyState {
 
     @Override
     public boolean passwordMatches (final ByteString byteString) throws DirectoryException {
-        /**
-         * It's not possible to authenticate an arbitrary principal if this system property
-         * is set, as it will override the principal we provide below.
-         */
-        if (System.getProperty("sun.security.krb5.principal") != null) {
-            logger.error(LocalizableMessage.raw("The 'sun.security.krb5.principal' system property is set. This will override all " +
-                "the authentication principal when performing Kerberos pass-through authentication."));
-            return false;
-        }
 
         /* Find the first available user attribute */
         String userPrincipal = null;

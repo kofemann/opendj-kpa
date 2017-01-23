@@ -2,8 +2,8 @@ package de.desy.opendj.kpa;
 
 import de.desy.opendj.kpa.server.KerberosPassThroughAuthenticationPolicyCfg;
 
-import org.forgerock.opendj.config.server.ConfigException;
 import org.forgerock.i18n.LocalizableMessage;
+import org.forgerock.opendj.config.server.ConfigException;
 
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyFactory;
@@ -33,6 +33,16 @@ public class KerberosPolicyFactory implements AuthenticationPolicyFactory<Kerber
     @Override
     public AuthenticationPolicy createAuthenticationPolicy (KerberosPassThroughAuthenticationPolicyCfg config)
             throws ConfigException, InitializationException {
+        /**
+         * It's not possible to authenticate an arbitrary principal if this
+         * system property is set, as it will override the principal we provide
+         * below.
+         */
+        if (System.getProperty("sun.security.krb5.principal") != null) {
+            throw new ConfigException(LocalizableMessage.raw(
+                    "The 'sun.security.krb5.principal' system property is set. "
+                    + "Can't initialize Kerberos pass-through authentication."));
+        }
         return new KerberosPolicy(config);
     }
 
