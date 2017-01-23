@@ -28,6 +28,7 @@
             <plugin>
               <groupId>org.forgerock.opendj</groupId>
               <artifactId>opendj-maven-plugin</artifactId>
+              <version>${version.opendj}</version>
               <executions>
                 <execution>
                   <id>generate-config</id>
@@ -46,11 +47,13 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
+            <version>3.0.1</version>
           </plugin>
 
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>make-assembly</id>
@@ -71,7 +74,7 @@
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-jar-plugin</artifactId>
-              <version>2.2</version>
+              <version>3.0.2</version>
               <configuration>
                   <archive>
                       <manifestEntries>
