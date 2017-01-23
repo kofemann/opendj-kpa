@@ -29,24 +29,24 @@
 
 package de.desy.opendj.kpa;
 
+import com.sun.security.auth.module.Krb5LoginModule;
+
+import org.forgerock.i18n.LocalizableMessage;
 import org.forgerock.opendj.ldap.ByteString;
 import org.forgerock.opendj.ldap.ResultCode;
+import org.forgerock.opendj.ldap.schema.AttributeType;
 
-import com.sun.security.auth.module.Krb5LoginModule;
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyState;
 import org.opends.server.types.*;
-import org.forgerock.opendj.ldap.schema.AttributeType;
-
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.*;
 import javax.security.auth.login.*;
 import java.io.IOException;
 import java.util.*;
-import org.forgerock.i18n.LocalizableMessage;
-import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
 
+import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

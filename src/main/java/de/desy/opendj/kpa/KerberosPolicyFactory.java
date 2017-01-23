@@ -2,13 +2,13 @@ package de.desy.opendj.kpa;
 
 import de.desy.opendj.kpa.server.KerberosPassThroughAuthenticationPolicyCfg;
 
+import org.forgerock.opendj.config.server.ConfigException;
+import org.forgerock.i18n.LocalizableMessage;
+
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyFactory;
 import org.opends.server.core.ServerContext;
 import org.opends.server.types.InitializationException;
-
-import org.forgerock.opendj.config.server.ConfigException;
-import org.forgerock.i18n.LocalizableMessage;
 
 import java.util.List;
 
