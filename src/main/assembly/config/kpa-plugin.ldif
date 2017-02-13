@@ -1,9 +1,8 @@
 dn: cn=Krb5 Pass Through,cn=Password Policies,cn=config
-objectClass: top 
-objectClass: ds-cfg-plugin
 objectClass: ds-cfg-kerberos-pass-through-authentication-policy
-cn: Krb5 Pass Through
-ds-cfg-enabled: true
+objectClass: top
+objectClass: ds-cfg-authentication-policy
 ds-cfg-java-class: de.desy.opendj.kpa.KerberosPolicyFactory
-ds-cfg-plugin-type: startup
-
+cn: Krb5 Pass Through
+ds-cfg-mapped-attribute: uid
+ds-cfg-realm: INVALID.REALM
