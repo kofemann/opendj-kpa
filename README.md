@@ -20,40 +20,40 @@ $ mvn clean install
 Build and Install
 ----------------
   1. build and install the extention
-    ```
-    $ mvn clean package
-    ```
+  ```
+  $ mvn clean package
+  ```
     
   2. add opendj-kpa to your OpenDJ installation
-    ```
-    $ cd <opendj-install directory>
-    $ unzip opendj-kpa-xxx.zip
-    ```
+  ```
+  $ cd <opendj-install directory>
+  $ unzip opendj-kpa-xxx.zip
+  ```
     
   3. restart the server
-    ```
-    $ bin/stop-ds --restart
-    ```
+  ```
+  $ bin/stop-ds --restart
+  ```
     
   4. configure the pass-through for kerberos
-    ```
-    $ bin/dsconfig -X create-password-policy \
-       --type kerberos-pass-through \
-       --policy-name "Krb5 Pass Through" \
-       --set krb5-realm:EXAMPLE.COM \
-       --set mapped-attribute:uid
-      ```
-      
+  ```
+  $ bin/dsconfig -X create-password-policy \
+     --type kerberos-pass-through \
+     --policy-name "Krb5 Pass Through" \
+     --set krb5-realm:EXAMPLE.COM \
+     --set mapped-attribute:uid
+  ```
+   
   5. assign pass-through authentication to users
 
-    You assign authentication policies in the same way as you assign password
-    policies, by using the ***ds-pwp-password-policy-dn*** attribute:
-    ```
-    ds-pwp-password-policy-dn: cn=Krb5 Pass Through,cn=Password Policies,cn=config
-    ```
+  You assign authentication policies in the same way as you assign password
+  policies, by using the ***ds-pwp-password-policy-dn*** attribute:
+  ```
+  ds-pwp-password-policy-dn: cn=Krb5 Pass Through,cn=Password Policies,cn=config
+  ```
 
-    Users depending on pass through authentication no longer need a local password policy,
-    as they no longer authenticate locally.
+  Users depending on pass through authentication no longer need a local password policy,
+  as they no longer authenticate locally.
 
 More Info
 ---------
