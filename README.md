@@ -59,4 +59,9 @@ More Info
 ---------
 [Configuring Pass Through Authentication][1]
 
+License
+--------
+License under [CDDL-1.0][2]
+
   [1]: https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/chap-pwd-policy
+  [2]: https://opensource.org/licenses/CDDL-1.0
