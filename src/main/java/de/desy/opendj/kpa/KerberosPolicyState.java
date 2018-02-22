@@ -42,12 +42,9 @@ import org.opends.server.api.AuthenticationPolicyState;
 import org.opends.server.types.*;
 
 import javax.security.auth.Subject;
-import javax.security.auth.callback.*;
 import javax.security.auth.login.*;
-import java.io.IOException;
 import java.util.*;
 
-import static de.desy.opendj.kpa.OpendjKpaMessages.*;
 import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
 
 /**
@@ -119,19 +116,9 @@ class KerberosPolicyState extends AuthenticationPolicyState {
         state.put("javax.security.auth.login.name", krb5Principal);
         state.put("javax.security.auth.login.password", byteString.toString().toCharArray());
 
-        /* Create the noop handler */
-        CallbackHandler cbh = new CallbackHandler() {
-            @Override
-            public void handle (Callback[] callbacks) throws IOException, UnsupportedCallbackException {
-                for (Callback callback : callbacks) {
-                    throw new UnsupportedCallbackException(callback, "Unrecognized Callback " + callback);
-                }
-            }
-        };
-
         /* Instantiate the login context */
         final Krb5LoginModule loginModule = new Krb5LoginModule();
-        loginModule.initialize(new Subject(), cbh, state, options);
+        loginModule.initialize(new Subject(), null, state, options);
         try {
             loginModule.login();
             loginModule.logout();
