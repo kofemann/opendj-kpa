@@ -22,7 +22,7 @@
  * CDDL HEADER END
  *
  *
- *      Copyright 2017 Deutsches Elektronen-Synchrotron DESY.
+ *      Copyright 2017 - 2018 Deutsches Elektronen-Synchrotron DESY.
  *      Copyright 2013 Plausible Labs Cooperative, Inc.
  *      Copyright 2011 ForgeRock AS.
  */
@@ -33,7 +33,9 @@ import com.sun.security.auth.module.Krb5LoginModule;
 
 import org.forgerock.i18n.LocalizableMessage;
 import org.forgerock.i18n.slf4j.LocalizedLogger;
+import org.forgerock.opendj.ldap.Attribute;
 import org.forgerock.opendj.ldap.ByteString;
+import org.forgerock.opendj.ldap.LdapException;
 import org.forgerock.opendj.ldap.ResultCode;
 import org.forgerock.opendj.ldap.schema.AttributeType;
 
@@ -46,6 +48,7 @@ import javax.security.auth.login.*;
 import java.util.*;
 
 import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
+import static de.desy.opendj.kpa.OpendjKpaMessages.*;
 
 /**
  * Kerberos authentication policy state.
@@ -73,13 +76,13 @@ class KerberosPolicyState extends AuthenticationPolicyState {
     }
 
     @Override
-    public boolean passwordMatches (final ByteString byteString) throws DirectoryException {
+    public boolean passwordMatches (final ByteString byteString) throws LdapException {
 
         /* Find the first available user attribute */
         String userPrincipal = null;
         for (AttributeType at : this.policy.getConfig().getMappedAttribute()) {
-            final List<Attribute> attributes = userEntry.getAttribute(at);
-            if (attributes == null || attributes.isEmpty())
+            final Iterable<Attribute> attributes = userEntry.getAllAttributes(at.toAttributeDescription());
+            if (attributes == null)
                 continue;
 
             for (Attribute attr : attributes) {
@@ -100,7 +103,7 @@ class KerberosPolicyState extends AuthenticationPolicyState {
                     this.policy.getConfig().dn(),
                     mappedAttributesAsString(this.policy.getConfig().getMappedAttribute()));
 
-            throw new DirectoryException(ResultCode.INVALID_CREDENTIALS, message);
+            throw LdapException.newLdapException(ResultCode.INVALID_CREDENTIALS, message);
         }
 
 	String krb5Principal = userPrincipal + "@" + this.policy.getConfig().getKrb5Realm();
@@ -140,15 +143,15 @@ class KerberosPolicyState extends AuthenticationPolicyState {
             case 0:
                 return "";
             case 1:
-                return attributes.iterator().next().getNameOrOID();
+                return attributes.iterator().next().getNameOrOid();
             default:
                 final StringBuilder builder = new StringBuilder();
                 final Iterator<AttributeType> i = attributes.iterator();
-                builder.append(i.next().getNameOrOID());
+                builder.append(i.next().getNameOrOid());
                 while (i.hasNext())
                 {
                     builder.append(", ");
-                    builder.append(i.next().getNameOrOID());
+                    builder.append(i.next().getNameOrOid());
                 }
                 return builder.toString();
         }
