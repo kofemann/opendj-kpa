@@ -5,36 +5,28 @@ Requirements
 ------------
   1. Java sdk 1.7 or above
   2. maven 3.0
-  3. Sources of OpenDJ
-
-Prepare Build environment
--------------------------
-Unpack OpenDJ source and run install
-```
-$ mkdir tmp
-$ cd tmp
-$ unzip <path/to/OpenDJ-3.5.x-src.zip>
-$ mvn clean install
-```
+  3. Access to ForgeRock protected Maven repositories[1]
 
 Build and Install
 ----------------
+  0. enable ForgeRock Maven repositories[1]
+
   1. build and install the extention
   ```
   $ mvn clean package
   ```
-    
+
   2. add opendj-kpa to your OpenDJ installation
   ```
   $ cd <opendj-install directory>
   $ unzip opendj-kpa-xxx.zip
   ```
-    
+
   3. restart the server
   ```
   $ bin/stop-ds --restart
   ```
-    
+
   4. configure the pass-through for kerberos
   ```
   $ bin/dsconfig -X create-password-policy \
@@ -43,7 +35,7 @@ Build and Install
      --set krb5-realm:EXAMPLE.COM \
      --set mapped-attribute:uid
   ```
-   
+
   5. assign pass-through authentication to users
 
   You assign authentication policies in the same way as you assign password
@@ -63,5 +55,6 @@ License
 --------
 License under [CDDL-1.0][2]
 
-  [1]: https://backstage.forgerock.com/docs/opendj/3.5/admin-guide/chap-pwd-policy
-  [2]: https://opensource.org/licenses/CDDL-1.0
+  [1]: https://backstage.forgerock.com/knowledge/kb/article/a74096897
+  [2]: https://backstage.forgerock.com/docs/ds/6/admin-guide/#chap-pwd-policy
+  [3]: https://opensource.org/licenses/CDDL-1.0
