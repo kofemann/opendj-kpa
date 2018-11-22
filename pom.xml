@@ -13,6 +13,13 @@
         <version.opendj>6.0.0</version.opendj>
     </properties>
 
+    <scm>
+        <url>https://github.com/kofemann/opendj-kpa.git</url>
+        <connection>scm:git:https://github.com/kofemann/opendj-kpa.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/kofemann/opendj-kpa.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <build>
         <resources>
             <resource>
