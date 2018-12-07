@@ -147,7 +147,7 @@
     <pluginRepositories>
         <pluginRepository>
               <id>forgerock-private-releases</id>
-              <url>https://maven.forgerock.org:443/repo/private-releases</url>
+              <url>https://maven.forgerock.org/repo/repo</url>
               <releases>
                   <enabled>true</enabled>
                   <checksumPolicy>fail</checksumPolicy>
@@ -161,7 +161,7 @@
     <repositories>
            <repository>
               <id>forgerock-private-releases</id>
-              <url>https://maven.forgerock.org:443/repo/private-releases</url>
+              <url>https://maven.forgerock.org/repo/repo/</url>
               <releases>
                   <enabled>true</enabled>
                   <checksumPolicy>fail</checksumPolicy>
