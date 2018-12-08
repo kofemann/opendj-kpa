@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.desy</groupId>
     <artifactId>opendj-kpa</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
     <name>Kerberos pass-through authentication plugin for OpenDJ</name>
     <properties>
@@ -17,7 +17,7 @@
         <url>https://github.com/kofemann/opendj-kpa.git</url>
         <connection>scm:git:https://github.com/kofemann/opendj-kpa.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/kofemann/opendj-kpa.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>opendj-kpa-2.0</tag>
     </scm>
 
     <build>
