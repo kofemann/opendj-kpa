@@ -7,7 +7,6 @@ import org.forgerock.opendj.config.server.ConfigException;
 
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyFactory;
-import org.opends.server.core.ServerContext;
 import org.opends.server.types.InitializationException;
 
 import java.util.List;
@@ -17,17 +16,7 @@ import static de.desy.opendj.kpa.OpendjKpaMessages.KPA_PLUGIN_INIT_FAILED;
 /**
  * Kerberos pass-through authentication policy factory.
  */
-public class KerberosPolicyFactory implements AuthenticationPolicyFactory<KerberosPassThroughAuthenticationPolicyCfg> {
-
-    private ServerContext serverContext;
-
-    /**
-     * Default constructor used by the admin framework when instantiating
-     * the plugin.
-     */
-    public KerberosPolicyFactory () {
-        super();
-    }
+public final class KerberosPolicyFactory implements AuthenticationPolicyFactory<KerberosPassThroughAuthenticationPolicyCfg> {
 
     /**
      * {@inheritDoc}
@@ -53,15 +42,5 @@ public class KerberosPolicyFactory implements AuthenticationPolicyFactory<Kerber
     public boolean isConfigurationAcceptable(KerberosPassThroughAuthenticationPolicyCfg kerberosPluginCfg, List<LocalizableMessage> messages) {
         return true;
     }
-   /**
-    * Sets the server context.
-    *
-    * @param serverContext
-    *            The server context.
-    */
-   @Override
-   public void setServerContext(ServerContext serverContext) {
-     this.serverContext = serverContext;
-   }
 
 }

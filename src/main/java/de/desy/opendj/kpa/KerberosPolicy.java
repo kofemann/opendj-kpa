@@ -13,10 +13,10 @@ package de.desy.opendj.kpa;
 import de.desy.opendj.kpa.server.KerberosPassThroughAuthenticationPolicyCfg;
 
 import org.forgerock.opendj.ldap.Dn;
+import org.forgerock.opendj.ldap.Entry;
 
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyState;
-import org.opends.server.types.Entry;
 
 class KerberosPolicy extends AuthenticationPolicy {
     /** Backing configuration */

@@ -8,9 +8,9 @@
     <name>Kerberos pass-through authentication plugin for OpenDJ</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <version.opendj>6.0.0</version.opendj>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <version.opendj>6.5.0</version.opendj>
     </properties>
 
     <scm>

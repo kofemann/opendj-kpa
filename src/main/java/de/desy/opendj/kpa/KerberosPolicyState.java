@@ -41,7 +41,6 @@ import org.forgerock.opendj.ldap.schema.AttributeType;
 
 import org.opends.server.api.AuthenticationPolicy;
 import org.opends.server.api.AuthenticationPolicyState;
-import org.opends.server.types.*;
 
 import javax.security.auth.Subject;
 import javax.security.auth.login.*;
@@ -49,6 +48,7 @@ import java.util.*;
 
 import static org.opends.messages.ExtensionMessages.ERR_LDAP_PTA_MAPPING_ATTRIBUTE_NOT_FOUND;
 import static de.desy.opendj.kpa.OpendjKpaMessages.*;
+import org.forgerock.opendj.ldap.Entry;
 
 /**
  * Kerberos authentication policy state.
