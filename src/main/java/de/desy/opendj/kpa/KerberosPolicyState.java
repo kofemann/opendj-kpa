@@ -124,6 +124,7 @@ class KerberosPolicyState extends AuthenticationPolicyState {
         loginModule.initialize(new Subject(), null, state, options);
         try {
             loginModule.login();
+            loginModule.commit();
             loginModule.logout();
         } catch (FailedLoginException e) {
             logger.debug(KPA_LOGIN_FAILED.get(userPrincipal, e.getMessage()));
