@@ -146,7 +146,7 @@
 
     <pluginRepositories>
         <pluginRepository>
-              <id>forgerock-private-releases</id>
+              <id>forgerock-internal-releases</id>
               <url>https://maven.forgerock.org/repo/repo</url>
               <releases>
                   <enabled>true</enabled>
@@ -160,7 +160,7 @@
     </pluginRepositories>
     <repositories>
            <repository>
-              <id>forgerock-private-releases</id>
+              <id>forgerock-internal-releases</id>
               <url>https://maven.forgerock.org/repo/repo/</url>
               <releases>
                   <enabled>true</enabled>
