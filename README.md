@@ -3,7 +3,7 @@ are managed by an external Kerberos realm.
 
 Requirements
 ------------
-  1. Java sdk 1.8 or above
+  1. Java sdk 11 or above
   2. maven 3.0
   3. Access to ForgeRock protected Maven repositories[1]
 
